@@ -1,0 +1,28 @@
+.text-field {
+    -fx-pref-width: 100%;
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/* Sidebar links */
+.sidebar-link {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+/* List items */
+.list-item {
+    -fx-padding: 10 20;
+    -fx-border-width: 0 0 1 0; /* Border bottom only */
+    -fx-border-color: #555; /* Border color */
+}
+
+/* Hover effect */
+.list-item:hover {
+    -fx-background-color: #444;
+}
+
