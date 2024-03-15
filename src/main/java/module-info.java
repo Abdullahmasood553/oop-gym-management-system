@@ -7,5 +7,6 @@ module com.example.gms {
     requires net.synedra.validatorfx;
 
     opens com.example.gms to javafx.fxml;
+    opens com.example.gms.models to javafx.base;
     exports com.example.gms;
 }
