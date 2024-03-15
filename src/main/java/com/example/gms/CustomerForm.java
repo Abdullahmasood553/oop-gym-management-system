@@ -24,6 +24,7 @@ public class CustomerForm extends GridPane {
     private TextField phoneNumberField;
     private ComboBox<String> membershipTypeComboBox;
     private DatePicker startDatePicker;
+    private TextField priceField;
     private Label statusLabel;
 
     public CustomerForm() {
@@ -68,11 +69,16 @@ public class CustomerForm extends GridPane {
         membershipTypeComboBox.getItems().addAll("Monthly", "Annual", "Lifetime");
         membershipTypeComboBox.getStyleClass().add("combo-box");
         membershipTypeComboBox.setMaxWidth(Double.MAX_VALUE); // Make the ComboBox full width
+        membershipTypeComboBox.setOnAction(e -> updatePrice());
 
         Label startDateLabel = new Label("Membership Start Date:");
         startDatePicker = new DatePicker(); // Use DatePicker for date selection
         startDatePicker.setMaxWidth(Double.MAX_VALUE);
         startDatePicker.setValue(LocalDate.now()); // Set default value to today's date
+
+        Label priceLabel = new Label("Price:");
+        priceField = new TextField();
+        priceField.setEditable(false); // Set as read-only
 
         Button submitButton = new Button("Submit");
         submitButton.setOnAction(e -> saveCustomerData());
@@ -86,15 +92,36 @@ public class CustomerForm extends GridPane {
         addRow(5, phoneNumberLabel, phoneNumberField);
         addRow(6, membershipTypeLabel, membershipTypeComboBox);
         addRow(7, startDateLabel, startDatePicker);
-        addRow(8, submitButton);
+        addRow(8, priceLabel, priceField);
+        addRow(9, submitButton);
 
         // Add status label
         statusLabel = new Label();
-        add(statusLabel, 0, 9, 2, 1); // Span over two columns
+        add(statusLabel, 0, 10, 2, 1); // Span over two columns
 
         // Apply styles
         this.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
     }
+
+    private void updatePrice() {
+        String membershipType = membershipTypeComboBox.getValue();
+        if (membershipType != null) {
+            double price = 0;
+            switch (membershipType) {
+                case "Monthly":
+                    price = 50;
+                    break;
+                case "Annual":
+                    price = 1500;
+                    break;
+                case "Lifetime":
+                    price = 8000;
+                    break;
+            }
+            priceField.setText(String.valueOf(price)); // Update the price field
+        }
+    }
+
 
     private void saveCustomerData() {
         // Get values from fields
@@ -127,6 +154,7 @@ public class CustomerForm extends GridPane {
                 phoneNumberField.clear();
                 membershipTypeComboBox.setValue(null);
                 startDatePicker.setValue(null);
+                priceField.clear(); // Clear price field
             } else {
                 // Show error message if any field is empty
                 statusLabel.setText("Please fill in all fields.");

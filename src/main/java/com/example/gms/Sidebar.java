@@ -1,9 +1,7 @@
 package com.example.gms;
-
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-
 public class Sidebar {
 
     public BorderPane getContent() {
@@ -13,16 +11,15 @@ public class Sidebar {
 
         Button customersButton = new Button("Customers");
         Button trainersButton = new Button("Trainers");
+        Button customerDetailButton = new Button("Customer Detail");
 
-        customersButton.getStyleClass().addAll("sidebar-link", "list-item");
-        trainersButton.getStyleClass().addAll("sidebar-link", "list-item");
+        customersButton.getStyleClass().add("sidebar-button");
+        trainersButton.getStyleClass().add("sidebar-button");
 
-        sidebar.getChildren().addAll(customersButton, trainersButton);
+        sidebar.getChildren().addAll(customersButton, trainersButton, customerDetailButton);
 
         BorderPane sidebarContent = new BorderPane();
         sidebarContent.setCenter(sidebar);
-
-        sidebarContent.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
         return sidebarContent;
     }
