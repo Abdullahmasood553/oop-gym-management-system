@@ -40,7 +40,7 @@ public class TrainerForm extends GridPane {
         column2.setPercentWidth(60);
         getColumnConstraints().addAll(column1, column2);
 
-        Label nameLabel = new Label("Full Name:");
+        Label nameLabel = new Label("Full Name Trainer:");
         nameField = new TextField();
         nameField.getStyleClass().add("text-field");
 

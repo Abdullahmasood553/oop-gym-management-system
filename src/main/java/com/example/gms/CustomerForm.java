@@ -18,7 +18,7 @@ public class CustomerForm extends GridPane {
 
     private TextField nameField;
     private TextField ageField;
-    private TextField genderField;
+    private ComboBox<String> genderFieldComboBox;
     private TextField addressField;
     private TextField emailField;
     private TextField phoneNumberField;
@@ -29,9 +29,11 @@ public class CustomerForm extends GridPane {
 
     public CustomerForm() {
         super();
-        setPadding(new Insets(10));
-        setHgap(10);
-        setVgap(10);
+        this.getStyleClass().add("customer-form");
+        setPadding(new Insets(50));
+        setHgap(20);
+        setVgap(20);
+
 
         // Define column constraints
         ColumnConstraints column1 = new ColumnConstraints();
@@ -48,9 +50,13 @@ public class CustomerForm extends GridPane {
         ageField = new TextField();
         ageField.getStyleClass().add("text-field");
 
+
         Label genderLabel = new Label("Gender:");
-        genderField = new TextField();
-        genderField.getStyleClass().add("text-field");
+        genderFieldComboBox = new ComboBox<>();
+        genderFieldComboBox.getItems().addAll("Male", "Female");
+        genderFieldComboBox.getStyleClass().add("combo-box");
+        genderFieldComboBox.setMaxWidth(Double.MAX_VALUE);
+
 
         Label addressLabel = new Label("Address:");
         addressField = new TextField();
@@ -72,9 +78,9 @@ public class CustomerForm extends GridPane {
         membershipTypeComboBox.setOnAction(e -> updatePrice());
 
         Label startDateLabel = new Label("Membership Start Date:");
-        startDatePicker = new DatePicker(); // Use DatePicker for date selection
+        startDatePicker = new DatePicker();
         startDatePicker.setMaxWidth(Double.MAX_VALUE);
-        startDatePicker.setValue(LocalDate.now()); // Set default value to today's date
+        startDatePicker.setValue(LocalDate.now());
 
         Label priceLabel = new Label("Price:");
         priceField = new TextField();
@@ -86,7 +92,7 @@ public class CustomerForm extends GridPane {
         // Add labels and fields to the grid
         addRow(0, nameLabel, nameField);
         addRow(1, ageLabel, ageField);
-        addRow(2, genderLabel, genderField);
+        addRow(2, genderLabel, genderFieldComboBox);
         addRow(3, addressLabel, addressField);
         addRow(4, emailLabel, emailField);
         addRow(5, phoneNumberLabel, phoneNumberField);
@@ -124,10 +130,9 @@ public class CustomerForm extends GridPane {
 
 
     private void saveCustomerData() {
-        // Get values from fields
         String name = nameField.getText();
         String age = ageField.getText();
-        String gender = genderField.getText();
+        String gender = genderFieldComboBox.getValue();
         String address = addressField.getText();
         String email = emailField.getText();
         String phoneNumber = phoneNumberField.getText();
@@ -145,16 +150,15 @@ public class CustomerForm extends GridPane {
                 // Show success message
                 statusLabel.setText("Customer data added successfully.");
 
-                // Clear text fields after submission
                 nameField.clear();
                 ageField.clear();
-                genderField.clear();
+                genderFieldComboBox.setValue(null);
                 addressField.clear();
                 emailField.clear();
                 phoneNumberField.clear();
                 membershipTypeComboBox.setValue(null);
                 startDatePicker.setValue(null);
-                priceField.clear(); // Clear price field
+                priceField.clear();
             } else {
                 // Show error message if any field is empty
                 statusLabel.setText("Please fill in all fields.");
