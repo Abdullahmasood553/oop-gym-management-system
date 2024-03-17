@@ -1,13 +1,9 @@
 package com.example.gms;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.control.Button;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -17,15 +13,15 @@ import java.time.LocalDate;
 public class TrainerForm extends GridPane {
 
     final private TextField nameField;
-
     final private TextField ageField;
-    final private ComboBox<String> genderFieldComboBox;
+    final private ComboBox<String> genderComboBox;
     final private TextField addressField;
     final private TextField emailField;
     final private TextField phoneNumberField;
-    final private ComboBox<String> membershipTypeComboBox;
-    final private DatePicker startDatePicker;
-    final private TextField priceField;
+    final private TextField specializationField;
+    final private ComboBox<String> experienceLevelComboBox;
+    final private TextField certificationField;
+    final private TextField hourlyRateField;
     final private Label statusLabel;
 
     public TrainerForm() {
@@ -51,10 +47,10 @@ public class TrainerForm extends GridPane {
         ageField.getStyleClass().add("text-field");
 
         Label genderLabel = new Label("Gender:");
-        genderFieldComboBox = new ComboBox<>();
-        genderFieldComboBox.getItems().addAll("Male", "Female");
-        genderFieldComboBox.getStyleClass().add("combo-box");
-        genderFieldComboBox.setMaxWidth(Double.MAX_VALUE);
+        genderComboBox = new ComboBox<>();
+        genderComboBox.getItems().addAll("Male", "Female");
+        genderComboBox.getStyleClass().add("combo-box");
+        genderComboBox.setMaxWidth(Double.MAX_VALUE);
 
         Label addressLabel = new Label("Address:");
         addressField = new TextField();
@@ -68,100 +64,93 @@ public class TrainerForm extends GridPane {
         phoneNumberField = new TextField();
         phoneNumberField.getStyleClass().add("text-field");
 
-        Label membershipTypeLabel = new Label("Membership Type:");
-        membershipTypeComboBox = new ComboBox<>();
-        membershipTypeComboBox.getItems().addAll("Monthly", "Annual", "Lifetime");
-        membershipTypeComboBox.getStyleClass().add("combo-box");
-        membershipTypeComboBox.setMaxWidth(Double.MAX_VALUE); // Make the ComboBox full width
-        membershipTypeComboBox.setOnAction(e -> updatePrice());
+        Label specializationLabel = new Label("Specialization:");
+        specializationField = new TextField();
+        specializationField.getStyleClass().add("text-field");
 
-        Label startDateLabel = new Label("Membership Start Date:");
-        startDatePicker = new DatePicker(); // Use DatePicker for date selection
-        startDatePicker.setMaxWidth(Double.MAX_VALUE);
-        startDatePicker.setValue(LocalDate.now()); // Set default value to today's date
+        Label experienceLevelLabel = new Label("Experience Level:");
+        experienceLevelComboBox = new ComboBox<>();
+        experienceLevelComboBox.getItems().addAll("Beginner", "Intermediate", "Advanced");
+        experienceLevelComboBox.getStyleClass().add("combo-box");
+        experienceLevelComboBox.setMaxWidth(Double.MAX_VALUE);
 
-        Label priceLabel = new Label("Price:");
-        priceField = new TextField();
-        priceField.setEditable(false); // Set as read-only
+        Label certificationLabel = new Label("Certification:");
+        certificationField = new TextField();
+        certificationField.getStyleClass().add("text-field");
+
+        Label hourlyRateLabel = new Label("Hourly Rate:");
+        hourlyRateField = new TextField();
+        hourlyRateField.getStyleClass().add("text-field");
 
         Button submitButton = new Button("Submit");
         submitButton.getStyleClass().add("submit-button");
-        submitButton.setOnAction(e -> saveCustomerData());
+        submitButton.setOnAction(e -> saveTrainerData());
 
         // Add labels and fields to the grid
         addRow(0, nameLabel, nameField);
         addRow(1, ageLabel, ageField);
-        addRow(2, genderLabel, genderFieldComboBox);
+        addRow(2, genderLabel, genderComboBox);
         addRow(3, addressLabel, addressField);
         addRow(4, emailLabel, emailField);
         addRow(5, phoneNumberLabel, phoneNumberField);
-        addRow(6, membershipTypeLabel, membershipTypeComboBox);
-        addRow(7, startDateLabel, startDatePicker);
-        addRow(8, priceLabel, priceField);
-        addRow(9, submitButton);
+        addRow(6, specializationLabel, specializationField);
+        addRow(7, experienceLevelLabel, experienceLevelComboBox);
+        addRow(8, certificationLabel, certificationField);
+        addRow(9, hourlyRateLabel, hourlyRateField);
+        addRow(10, submitButton);
 
         // Add status label
         statusLabel = new Label();
-        add(statusLabel, 0, 10, 2, 1); // Span over two columns
+        add(statusLabel, 0, 11, 2, 1); // Span over two columns
 
         // Apply styles
         this.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
     }
 
-    private void updatePrice() {
-        String membershipType = membershipTypeComboBox.getValue();
-        if (membershipType != null) {
-            double price = 0;
-            switch (membershipType) {
-                case "Monthly":
-                    price = 50;
-                    break;
-                case "Annual":
-                    price = 1500;
-                    break;
-                case "Lifetime":
-                    price = 8000;
-                    break;
-            }
-            priceField.setText(String.valueOf(price)); // Update the price field
-        }
-    }
-
-
-    private void saveCustomerData() {
+    private void saveTrainerData() {
         // Get values from fields
         String name = nameField.getText();
         String age = ageField.getText();
-        String gender = genderFieldComboBox.getValue();
+        String gender = genderComboBox.getValue();
         String address = addressField.getText();
         String email = emailField.getText();
         String phoneNumber = phoneNumberField.getText();
-        String membershipType = membershipTypeComboBox.getValue();
-        LocalDate startDate = startDatePicker.getValue();
+        String specialization = specializationField.getText();
+        String experienceLevel = experienceLevelComboBox.getValue();
+        String certification = certificationField.getText();
+        String hourlyRate = hourlyRateField.getText();
 
-        // Append customer data to the file
+        // Append trainer data to the file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("trainers.txt", true))) {
             // Validate if all fields are filled
             if (!name.isEmpty() && !age.isEmpty() && !gender.isEmpty() && !address.isEmpty() &&
-                    !email.isEmpty() && !phoneNumber.isEmpty() && membershipType != null && startDate != null) {
+                    !email.isEmpty() && !phoneNumber.isEmpty() && !specialization.isEmpty() &&
+                    experienceLevel != null && !certification.isEmpty() && !hourlyRate.isEmpty()) {
                 writer.write(name + "," + age + "," + gender + "," + address + "," +
-                        email + "," + phoneNumber + "," + membershipType + "," + startDate + "\n");
+                        email + "," + phoneNumber + "," + specialization + "," +
+                        experienceLevel + "," + certification + "," + hourlyRate + "\n");
 
                 // Show success message
-                statusLabel.setText("Customer data added successfully.");
+//                statusLabel.setText("Trainer data added successfully.");
+                // Show success message using dialog
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Trainer data added successfully.");
+                alert.showAndWait();
 
                 // Clear text fields after submission
                 nameField.clear();
                 ageField.clear();
-                genderFieldComboBox.setValue(null);
+                genderComboBox.setValue(null);
                 addressField.clear();
                 emailField.clear();
                 phoneNumberField.clear();
-                membershipTypeComboBox.setValue(null);
-                startDatePicker.setValue(null);
-                priceField.clear(); // Clear price field
+                specializationField.clear();
+                experienceLevelComboBox.setValue(null);
+                certificationField.clear();
+                hourlyRateField.clear();
             } else {
-                // Show error message if any field is empty
                 statusLabel.setText("Please fill in all fields.");
             }
         } catch (IOException ex) {

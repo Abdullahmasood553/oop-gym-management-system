@@ -69,6 +69,11 @@
     -fx-background-image: url('/gym.jpg');
 }
 
+
+.admin-detail {
+    -fx-background-image: url('/gym-detail.jpg');
+}
+
 .button-box {
     -fx-spacing: 20;
     -fx-padding: 10;

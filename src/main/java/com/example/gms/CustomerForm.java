@@ -1,13 +1,9 @@
 package com.example.gms;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.control.Button;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -149,7 +145,13 @@ public class CustomerForm extends GridPane {
                         email + "," + phoneNumber + "," + membershipType + "," + startDate + "\n");
 
                 // Show success message
-                statusLabel.setText("Customer data added successfully.");
+//                statusLabel.setText("Customer data added successfully.");
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Customer data added successfully.");
+                alert.showAndWait();
 
                 nameField.clear();
                 ageField.clear();

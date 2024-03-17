@@ -42,6 +42,7 @@ public class CustomerDetail {
         ObservableList<Customer> data = FXCollections.observableArrayList(customers);
         tableView.setItems(data);
 
+
         // Set up the scene and show the stage
         Scene scene = new Scene(tableView, 800, 600);
         primaryStage.setScene(scene);

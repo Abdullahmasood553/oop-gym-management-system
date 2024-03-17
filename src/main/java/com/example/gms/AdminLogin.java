@@ -1,5 +1,4 @@
 package com.example.gms;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,7 +24,8 @@ public class AdminLogin {
         PasswordField passwordField = new PasswordField();
 
         Button loginButton = new Button("Login");
-        loginButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 8 14;");
+        loginButton.setStyle("-fx-background-color: #4CAF50;" +
+                " -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 8 14;");
 
 
         Label messageLabel = new Label();
@@ -49,8 +49,12 @@ public class AdminLogin {
             String password = passwordField.getText();
 
             if (isValidCredentials(email, password)) {
-
-//                AdminEventScreen.adminEventScreen(stage);
+                try {
+//                    CustomerDetail.displayCustomerDetail(stage);
+                    AdminView.showAdminView(stage);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             } else {
                 // Show error message
                 messageLabel.setText("Invalid credentials. Please try again.");

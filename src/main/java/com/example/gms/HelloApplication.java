@@ -20,7 +20,7 @@ public class HelloApplication extends Application {
         HBox buttonBox = new HBox();
         buttonBox.getStyleClass().add("button-box");
 
-        Button registerUserDetailButton = new Button("Create Event");
+        Button registerUserDetailButton = new Button("Gym Entry");
         Button viewAdminDetailButton = new Button("Admin Login");
 
         registerUserDetailButton.setOnAction(e -> {
@@ -33,7 +33,7 @@ public class HelloApplication extends Application {
         });
 
         viewAdminDetailButton.setOnAction(e -> {
-            // Handle view admin detail button action
+            AdminLogin.loginScreen(stage);
         });
 
         registerUserDetailButton.getStyleClass().add("button");
@@ -42,7 +42,7 @@ public class HelloApplication extends Application {
         buttonBox.getChildren().addAll(registerUserDetailButton, viewAdminDetailButton);
         root.getChildren().add(buttonBox);
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 900, 600);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
