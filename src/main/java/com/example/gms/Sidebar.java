@@ -27,27 +27,28 @@ public class Sidebar extends VBox {
 
         Button customersButton = new Button("Customers");
         Button trainersButton = new Button("Trainers");
-        Button customerDetailButton = new Button("Customer Detail");
+        // Button customerDetailButton = new Button("Customer Detail");
 
         customersButton.getStyleClass().addAll("sidebar-button", "list-item");
         trainersButton.getStyleClass().addAll("sidebar-button", "list-item");
-        customerDetailButton.getStyleClass().addAll("sidebar-button", "list-item");
+//        customerDetailButton.getStyleClass().addAll("sidebar-button", "list-item");
 
         customersButton.setOnAction(e -> showCustomerForm());
         trainersButton.setOnAction(e -> showTrainerForm());
-        customerDetailButton.setOnAction(e -> {
-            try {
-                CustomerDetail.displayCustomerDetail(new Stage());
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
+//        customerDetailButton.setOnAction(e -> {
+//            try {
+//                CustomerDetail.displayCustomerDetail(new Stage());
+//            } catch (IOException ioException) {
+//                ioException.printStackTrace();
+//            }
+//        });
 
         VBox.setMargin(customersButton, new javafx.geometry.Insets(10, 0, 0, 0));
         VBox.setMargin(trainersButton, new javafx.geometry.Insets(10, 0, 0, 0));
-        VBox.setMargin(customerDetailButton, new javafx.geometry.Insets(10, 0, 0, 0));
+//        VBox.setMargin(customerDetailButton, new javafx.geometry.Insets(10, 0, 0, 0));
 
-        this.getChildren().addAll(customersButton, trainersButton, customerDetailButton);
+//        this.getChildren().addAll(customersButton, trainersButton, customerDetailButton);
+        this.getChildren().addAll(customersButton, trainersButton);
     }
 
     private void showCustomerForm() {

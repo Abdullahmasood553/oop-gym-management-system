@@ -87,6 +87,7 @@ public class CustomerForm extends GridPane {
         priceField.setEditable(false); // Set as read-only
 
         Button submitButton = new Button("Submit");
+        submitButton.getStyleClass().add("submit-button");
         submitButton.setOnAction(e -> saveCustomerData());
 
         // Add labels and fields to the grid

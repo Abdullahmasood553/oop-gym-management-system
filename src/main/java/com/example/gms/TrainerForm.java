@@ -17,8 +17,9 @@ import java.time.LocalDate;
 public class TrainerForm extends GridPane {
 
     final private TextField nameField;
+
     final private TextField ageField;
-    final private TextField genderField;
+    final private ComboBox<String> genderFieldComboBox;
     final private TextField addressField;
     final private TextField emailField;
     final private TextField phoneNumberField;
@@ -29,9 +30,10 @@ public class TrainerForm extends GridPane {
 
     public TrainerForm() {
         super();
-        setPadding(new Insets(10));
-        setHgap(10);
-        setVgap(10);
+        this.getStyleClass().add("trainer-form");
+        setPadding(new Insets(50));
+        setHgap(20);
+        setVgap(20);
 
         // Define column constraints
         ColumnConstraints column1 = new ColumnConstraints();
@@ -40,7 +42,7 @@ public class TrainerForm extends GridPane {
         column2.setPercentWidth(60);
         getColumnConstraints().addAll(column1, column2);
 
-        Label nameLabel = new Label("Full Name Trainer:");
+        Label nameLabel = new Label("Full Name:");
         nameField = new TextField();
         nameField.getStyleClass().add("text-field");
 
@@ -49,8 +51,10 @@ public class TrainerForm extends GridPane {
         ageField.getStyleClass().add("text-field");
 
         Label genderLabel = new Label("Gender:");
-        genderField = new TextField();
-        genderField.getStyleClass().add("text-field");
+        genderFieldComboBox = new ComboBox<>();
+        genderFieldComboBox.getItems().addAll("Male", "Female");
+        genderFieldComboBox.getStyleClass().add("combo-box");
+        genderFieldComboBox.setMaxWidth(Double.MAX_VALUE);
 
         Label addressLabel = new Label("Address:");
         addressField = new TextField();
@@ -81,12 +85,13 @@ public class TrainerForm extends GridPane {
         priceField.setEditable(false); // Set as read-only
 
         Button submitButton = new Button("Submit");
+        submitButton.getStyleClass().add("submit-button");
         submitButton.setOnAction(e -> saveCustomerData());
 
         // Add labels and fields to the grid
         addRow(0, nameLabel, nameField);
         addRow(1, ageLabel, ageField);
-        addRow(2, genderLabel, genderField);
+        addRow(2, genderLabel, genderFieldComboBox);
         addRow(3, addressLabel, addressField);
         addRow(4, emailLabel, emailField);
         addRow(5, phoneNumberLabel, phoneNumberField);
@@ -127,7 +132,7 @@ public class TrainerForm extends GridPane {
         // Get values from fields
         String name = nameField.getText();
         String age = ageField.getText();
-        String gender = genderField.getText();
+        String gender = genderFieldComboBox.getValue();
         String address = addressField.getText();
         String email = emailField.getText();
         String phoneNumber = phoneNumberField.getText();
@@ -135,7 +140,7 @@ public class TrainerForm extends GridPane {
         LocalDate startDate = startDatePicker.getValue();
 
         // Append customer data to the file
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("customers.txt", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("trainers.txt", true))) {
             // Validate if all fields are filled
             if (!name.isEmpty() && !age.isEmpty() && !gender.isEmpty() && !address.isEmpty() &&
                     !email.isEmpty() && !phoneNumber.isEmpty() && membershipType != null && startDate != null) {
@@ -148,7 +153,7 @@ public class TrainerForm extends GridPane {
                 // Clear text fields after submission
                 nameField.clear();
                 ageField.clear();
-                genderField.clear();
+                genderFieldComboBox.setValue(null);
                 addressField.clear();
                 emailField.clear();
                 phoneNumberField.clear();

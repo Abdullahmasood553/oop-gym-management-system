@@ -1,41 +1,51 @@
 package com.example.gms;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class HelloApplication extends Application {
-    private BorderPane root;
-    private CustomerForm customerForm;
-    private TrainerForm trainerForm;
-    private Sidebar sidebar;
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setTitle("Gym Management App");
+        stage.setTitle("Gym Management System");
 
-        customerForm = new CustomerForm();
-        trainerForm = new TrainerForm();
+        StackPane root = new StackPane();
+        root.getStyleClass().add("root");
 
-        root = new BorderPane();
-        sidebar = new Sidebar(root, customerForm, trainerForm);
-        root.setLeft(sidebar);
+        HBox buttonBox = new HBox();
+        buttonBox.getStyleClass().add("button-box");
 
-        // Show the default customer form
-        showCustomerForm();
+        Button registerUserDetailButton = new Button("Create Event");
+        Button viewAdminDetailButton = new Button("Admin Login");
+
+        registerUserDetailButton.setOnAction(e -> {
+            MainScreen mainScreen = new MainScreen();
+            try {
+                mainScreen.start(stage);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        viewAdminDetailButton.setOnAction(e -> {
+            // Handle view admin detail button action
+        });
+
+        registerUserDetailButton.getStyleClass().add("button");
+        viewAdminDetailButton.getStyleClass().add("button");
+
+        buttonBox.getChildren().addAll(registerUserDetailButton, viewAdminDetailButton);
+        root.getChildren().add(buttonBox);
 
         Scene scene = new Scene(root, 800, 600);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
-
         stage.setScene(scene);
         stage.show();
-    }
-
-    private void showCustomerForm() {
-        root.setCenter(customerForm);
     }
 
     public static void main(String[] args) {

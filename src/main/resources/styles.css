@@ -30,9 +30,15 @@
 
 /* Customer form */
 .customer-form {
-    -fx-background-image: url('background.jpg');
+    -fx-background-image: url('customer.jpg');
     -fx-background-size: cover;
-    -fx-opacity: 0.7; /* Adjust opacity to make the background lighter */
+    -fx-opacity: 0.9;
+}
+
+.trainer-form {
+    -fx-background-image: url('trainer.jpg');
+    -fx-background-size: cover;
+    -fx-opacity: 0.85;
 }
 
 /* Label */
@@ -40,4 +46,41 @@
     -fx-text-fill: white; /* Set font color to white */
     -fx-font-weight: bold; /* Make font bold */
     -fx-font-size: 14px; /* Set font size */
+}
+
+
+/* Submit button */
+.button.submit-button {
+    -fx-background-color: #4CAF50; /* Green */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+}
+
+/* Hover effect */
+.button.submit-button:hover {
+    -fx-background-color: #45a049; /* Darker green */
+}
+
+
+.root {
+    -fx-background-image: url('/gym.jpg');
+}
+
+.button-box {
+    -fx-spacing: 20;
+    -fx-padding: 10;
+    -fx-alignment: center;
+}
+
+.button {
+    -fx-background-color: linear-gradient(#52a7ea, #0083ff);
+    -fx-background-radius: 30;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-pref-width: 150px;
+    -fx-cursor: hand;
+    -fx-padding: 10 20;
 }
