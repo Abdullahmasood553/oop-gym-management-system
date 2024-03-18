@@ -70,8 +70,12 @@
 }
 
 
+
 .admin-detail {
-    -fx-background-image: url('/gym-detail.jpg');
+        -fx-background-image: url('/gym-detail.jpg');
+        -fx-background-size: cover; /* Adjust as needed */
+        -fx-background-position: center;
+        -fx-opacity: 0.8;
 }
 
 .button-box {

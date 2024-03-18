@@ -22,11 +22,19 @@ public class AdminView {
         Button viewAdminDetailButton = new Button("Trainer Detail");
 
         registerUserDetailButton.setOnAction(e -> {
-
+            try {
+                CustomerDetail.displayCustomerDetail(stage);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
 
         viewAdminDetailButton.setOnAction(e -> {
-
+            try {
+                TrainerDetail.displayTrainerDetail(stage);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
 
         registerUserDetailButton.getStyleClass().add("button");

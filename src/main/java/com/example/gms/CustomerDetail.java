@@ -8,6 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -38,13 +42,18 @@ public class CustomerDetail {
         TableView<Customer> tableView = new TableView<>();
         tableView.getColumns().addAll(nameColumn, ageColumn, genderColumn, emailColumn);
 
+        // Customize TableView
+        tableView.setStyle("-fx-background-color: #f0f0f0;"); // Change table background color
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // Apply constraint to remove extra spaces
+
         // Add data to the TableView
         ObservableList<Customer> data = FXCollections.observableArrayList(customers);
         tableView.setItems(data);
 
-
         // Set up the scene and show the stage
-        Scene scene = new Scene(tableView, 800, 600);
+        StackPane root = new StackPane(tableView);
+        root.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null))); // Optional background color for the scene
+        Scene scene = new Scene(root, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Customer Details");
         primaryStage.show();
