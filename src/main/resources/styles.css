@@ -93,3 +93,21 @@
     -fx-cursor: hand;
     -fx-padding: 10 20;
 }
+
+
+#login-button {
+    -fx-background-color: linear-gradient(#52a7ea, #0083ff);
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+}
+
+#login-button:hover {
+    -fx-background-color: linear-gradient(#4CAF50, #4CAF50);
+}
+
+#grid-pane {
+    -fx-background-color: LIGHTGRAY;
+}
