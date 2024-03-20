@@ -25,7 +25,6 @@ public class CustomerDetail {
     public static void displayCustomerDetail(Stage primaryStage) throws IOException {
         List<Customer> customers = readCustomersFromFile("customers.txt");
 
-        // Create table columns
         TableColumn<Customer, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
@@ -38,19 +37,15 @@ public class CustomerDetail {
         TableColumn<Customer, String> emailColumn = new TableColumn<>("Email");
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-        // Create TableView
         TableView<Customer> tableView = new TableView<>();
         tableView.getColumns().addAll(nameColumn, ageColumn, genderColumn, emailColumn);
 
-        // Customize TableView
-        tableView.setStyle("-fx-background-color: #f0f0f0;"); // Change table background color
-        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // Apply constraint to remove extra spaces
+        tableView.setStyle("-fx-background-color: #f0f0f0;");
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        // Add data to the TableView
         ObservableList<Customer> data = FXCollections.observableArrayList(customers);
         tableView.setItems(data);
 
-        // Set up the scene and show the stage
         StackPane root = new StackPane(tableView);
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null))); // Optional background color for the scene
         Scene scene = new Scene(root, 800, 600);

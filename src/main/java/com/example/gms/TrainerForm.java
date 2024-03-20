@@ -31,7 +31,6 @@ public class TrainerForm extends GridPane {
         setHgap(20);
         setVgap(20);
 
-        // Define column constraints
         ColumnConstraints column1 = new ColumnConstraints();
         column1.setPercentWidth(40);
         ColumnConstraints column2 = new ColumnConstraints();
@@ -86,7 +85,6 @@ public class TrainerForm extends GridPane {
         submitButton.getStyleClass().add("submit-button");
         submitButton.setOnAction(e -> saveTrainerData());
 
-        // Add labels and fields to the grid
         addRow(0, nameLabel, nameField);
         addRow(1, ageLabel, ageField);
         addRow(2, genderLabel, genderComboBox);
@@ -108,7 +106,6 @@ public class TrainerForm extends GridPane {
     }
 
     private void saveTrainerData() {
-        // Get values from fields
         String name = nameField.getText();
         String age = ageField.getText();
         String gender = genderComboBox.getValue();
@@ -120,9 +117,7 @@ public class TrainerForm extends GridPane {
         String certification = certificationField.getText();
         String hourlyRate = hourlyRateField.getText();
 
-        // Append trainer data to the file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("trainers.txt", true))) {
-            // Validate if all fields are filled
             if (!name.isEmpty() && !age.isEmpty() && !gender.isEmpty() && !address.isEmpty() &&
                     !email.isEmpty() && !phoneNumber.isEmpty() && !specialization.isEmpty() &&
                     experienceLevel != null && !certification.isEmpty() && !hourlyRate.isEmpty()) {
@@ -130,16 +125,12 @@ public class TrainerForm extends GridPane {
                         email + "," + phoneNumber + "," + specialization + "," +
                         experienceLevel + "," + certification + "," + hourlyRate + "\n");
 
-                // Show success message
-//                statusLabel.setText("Trainer data added successfully.");
-                // Show success message using dialog
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success");
                 alert.setHeaderText(null);
                 alert.setContentText("Trainer data added successfully.");
                 alert.showAndWait();
 
-                // Clear text fields after submission
                 nameField.clear();
                 ageField.clear();
                 genderComboBox.setValue(null);

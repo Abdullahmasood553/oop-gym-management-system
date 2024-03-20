@@ -14,9 +14,6 @@ public class AdminLogin {
     public static void loginScreen(Stage stage) {
         stage.setTitle("Admin Login");
 
-
-
-
         Label emailLabel = new Label("Email:");
         TextField emailField = new TextField();
 
@@ -28,7 +25,6 @@ public class AdminLogin {
 
         Label messageLabel = new Label();
 
-        // Add components to layout
         GridPane grid = new GridPane();
         grid.setId("grid-pane");
         grid.setPadding(new Insets(20));
@@ -39,7 +35,6 @@ public class AdminLogin {
         grid.add(loginButton, 1, 3);
         grid.add(messageLabel, 1, 4);
 
-        // Login action
         loginButton.setOnAction(e -> {
             String email = emailField.getText();
             String password = passwordField.getText();
@@ -64,7 +59,6 @@ public class AdminLogin {
         stage.show();
     }
 
-    // Method to check if credentials are valid
     private static boolean isValidCredentials(String email, String password) {
         return email.equals("admin@gmail.com") && password.equals("123456");
     }

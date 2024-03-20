@@ -21,7 +21,7 @@ public class Customer {
         this.startDate = startDate;
     }
 
-    // Getters for all fields
+
     public String getName() {
         return name;
     }

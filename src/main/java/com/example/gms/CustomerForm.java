@@ -70,7 +70,7 @@ public class CustomerForm extends GridPane {
         membershipTypeComboBox = new ComboBox<>();
         membershipTypeComboBox.getItems().addAll("Monthly", "Annual", "Lifetime");
         membershipTypeComboBox.getStyleClass().add("combo-box");
-        membershipTypeComboBox.setMaxWidth(Double.MAX_VALUE); // Make the ComboBox full width
+        membershipTypeComboBox.setMaxWidth(Double.MAX_VALUE);
         membershipTypeComboBox.setOnAction(e -> updatePrice());
 
         Label startDateLabel = new Label("Membership Start Date:");
@@ -80,13 +80,12 @@ public class CustomerForm extends GridPane {
 
         Label priceLabel = new Label("Price:");
         priceField = new TextField();
-        priceField.setEditable(false); // Set as read-only
+        priceField.setEditable(false);
 
         Button submitButton = new Button("Submit");
         submitButton.getStyleClass().add("submit-button");
         submitButton.setOnAction(e -> saveCustomerData());
 
-        // Add labels and fields to the grid
         addRow(0, nameLabel, nameField);
         addRow(1, ageLabel, ageField);
         addRow(2, genderLabel, genderFieldComboBox);
@@ -100,7 +99,7 @@ public class CustomerForm extends GridPane {
 
         // Add status label
         statusLabel = new Label();
-        add(statusLabel, 0, 10, 2, 1); // Span over two columns
+        add(statusLabel, 0, 10, 2, 1);
 
         // Apply styles
         this.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
@@ -121,7 +120,7 @@ public class CustomerForm extends GridPane {
                     price = 8000;
                     break;
             }
-            priceField.setText(String.valueOf(price)); // Update the price field
+            priceField.setText(String.valueOf(price));
         }
     }
 
@@ -136,16 +135,12 @@ public class CustomerForm extends GridPane {
         String membershipType = membershipTypeComboBox.getValue();
         LocalDate startDate = startDatePicker.getValue();
 
-        // Append customer data to the file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("customers.txt", true))) {
-            // Validate if all fields are filled
             if (!name.isEmpty() && !age.isEmpty() && !gender.isEmpty() && !address.isEmpty() &&
                     !email.isEmpty() && !phoneNumber.isEmpty() && membershipType != null && startDate != null) {
                 writer.write(name + "," + age + "," + gender + "," + address + "," +
                         email + "," + phoneNumber + "," + membershipType + "," + startDate + "\n");
 
-                // Show success message
-//                statusLabel.setText("Customer data added successfully.");
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success");
@@ -163,7 +158,6 @@ public class CustomerForm extends GridPane {
                 startDatePicker.setValue(null);
                 priceField.clear();
             } else {
-                // Show error message if any field is empty
                 statusLabel.setText("Please fill in all fields.");
             }
         } catch (IOException ex) {

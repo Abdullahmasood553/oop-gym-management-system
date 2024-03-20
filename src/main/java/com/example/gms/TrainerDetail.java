@@ -24,7 +24,6 @@ public class TrainerDetail {
     public static void displayTrainerDetail(Stage primaryStage) throws IOException {
         List<Trainer> trainers = readTrainersFromFile("trainers.txt");
 
-        // Create table columns
         TableColumn<Trainer, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
@@ -43,15 +42,12 @@ public class TrainerDetail {
         TableColumn<Trainer, String> specializationColumn = new TableColumn<>("Specialization");
         specializationColumn.setCellValueFactory(new PropertyValueFactory<>("specialization"));
 
-        // Create TableView
         TableView<Trainer> tableView = new TableView<>();
         tableView.getColumns().addAll(nameColumn, ageColumn, genderColumn, emailColumn, specializationColumn, phoneNumberColumn);
 
-        // Customize TableView
         tableView.setStyle("-fx-background-color: #f0f0f0;");
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        // Add data to the TableView
         ObservableList<Trainer> data = FXCollections.observableArrayList(trainers);
         tableView.setItems(data);
 
