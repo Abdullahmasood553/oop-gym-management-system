@@ -37,8 +37,20 @@ public class CustomerDetail {
         TableColumn<Customer, String> emailColumn = new TableColumn<>("Email");
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 
+        TableColumn<Customer, String> phoneColumn = new TableColumn<>("Phone");
+        phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
+        TableColumn<Customer, String> addressColumn = new TableColumn<>("Address");
+        addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+
+        TableColumn<Customer, String> membershipTypeColumn = new TableColumn<>("Membership Type");
+        membershipTypeColumn.setCellValueFactory(new PropertyValueFactory<>("membershipType"));
+
+        TableColumn<Customer, String> startDateColumn = new TableColumn<>("Start Date");
+        startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+
         TableView<Customer> tableView = new TableView<>();
-        tableView.getColumns().addAll(nameColumn, ageColumn, genderColumn, emailColumn);
+        tableView.getColumns().addAll(nameColumn, ageColumn, genderColumn, emailColumn, addressColumn, membershipTypeColumn, startDateColumn);
 
         tableView.setStyle("-fx-background-color: #f0f0f0;");
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);

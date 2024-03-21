@@ -43,7 +43,7 @@ public class Customer {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+            return phoneNumber;
     }
 
     public String getMembershipType() {

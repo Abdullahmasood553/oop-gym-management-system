@@ -42,8 +42,17 @@ public class TrainerDetail {
         TableColumn<Trainer, String> specializationColumn = new TableColumn<>("Specialization");
         specializationColumn.setCellValueFactory(new PropertyValueFactory<>("specialization"));
 
+        TableColumn<Trainer, String> experienceLevelColumn = new TableColumn<>("Experience Level");
+        experienceLevelColumn.setCellValueFactory(new PropertyValueFactory<>("experienceLevel"));
+
+        TableColumn<Trainer, String> certificationColumn = new TableColumn<>("Certification");
+        certificationColumn.setCellValueFactory(new PropertyValueFactory<>("certification"));
+
+        TableColumn<Trainer, String> hourlyRateColumn = new TableColumn<>("Hourly Rate");
+        hourlyRateColumn.setCellValueFactory(new PropertyValueFactory<>("hourlyRate"));
+
         TableView<Trainer> tableView = new TableView<>();
-        tableView.getColumns().addAll(nameColumn, ageColumn, genderColumn, emailColumn, specializationColumn, phoneNumberColumn);
+        tableView.getColumns().addAll(nameColumn, ageColumn, genderColumn, emailColumn, specializationColumn, phoneNumberColumn, experienceLevelColumn, certificationColumn, hourlyRateColumn);
 
         tableView.setStyle("-fx-background-color: #f0f0f0;");
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -53,7 +62,7 @@ public class TrainerDetail {
 
         StackPane root = new StackPane(tableView);
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 980, 500);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Trainer Details");
         primaryStage.show();

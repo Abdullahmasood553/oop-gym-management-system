@@ -20,8 +20,6 @@ public class MainScreen {
         root = new BorderPane();
         sidebar = new Sidebar(root, customerForm, trainerForm);
         root.setLeft(sidebar);
-
-        // Show the default customer form
         showCustomerForm();
 
         Scene scene = new Scene(root, 1000, 600);

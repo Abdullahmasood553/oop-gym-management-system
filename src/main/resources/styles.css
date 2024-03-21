@@ -1,14 +1,12 @@
-/* Text fields */
+
 .text-field {
     -fx-pref-width: 100%;
     -fx-background-radius: 5px;
     -fx-border-width: 2px;
-    -fx-border-color: linear-gradient(to bottom right, #ccc, #333); /* Darker color at corners */
+    -fx-border-color: linear-gradient(to bottom right, #ccc, #333);
     -fx-padding: 5px;
 }
 
-
-/* Sidebar */
 .sidebar {
     -fx-background-color: #333;
     -fx-border-color: #555;
@@ -16,19 +14,16 @@
     -fx-pref-width: 130px;
 }
 
-/* Sidebar buttons */
 .sidebar-button {
     -fx-min-width: 120px;
     -fx-max-width: 120px;
     -fx-margin: 0 0 10px 0;
 }
 
-/* Sidebar button box */
 .sidebar-button-box {
     -fx-alignment: TOP_LEFT;
 }
 
-/* Customer form */
 .customer-form {
     -fx-background-image: url('customer.jpg');
     -fx-background-size: cover;
@@ -41,17 +36,14 @@
     -fx-opacity: 0.85;
 }
 
-/* Label */
 .label {
-    -fx-text-fill: white; /* Set font color to white */
-    -fx-font-weight: bold; /* Make font bold */
-    -fx-font-size: 14px; /* Set font size */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
 }
 
-
-/* Submit button */
 .button.submit-button {
-    -fx-background-color: #4CAF50; /* Green */
+    -fx-background-color: #4CAF50;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
@@ -59,21 +51,17 @@
     -fx-border-radius: 5px;
 }
 
-/* Hover effect */
 .button.submit-button:hover {
-    -fx-background-color: #45a049; /* Darker green */
+    -fx-background-color: #45a049;
 }
-
 
 .root {
     -fx-background-image: url('/gym.jpg');
 }
 
-
-
 .admin-detail {
         -fx-background-image: url('/gym-detail.jpg');
-        -fx-background-size: cover; /* Adjust as needed */
+        -fx-background-size: cover;
         -fx-background-position: center;
         -fx-opacity: 0.8;
 }

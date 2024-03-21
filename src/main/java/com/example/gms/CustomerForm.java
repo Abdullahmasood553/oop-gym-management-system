@@ -30,8 +30,6 @@ public class CustomerForm extends GridPane {
         setHgap(20);
         setVgap(20);
 
-
-        // Define column constraints
         ColumnConstraints column1 = new ColumnConstraints();
         column1.setPercentWidth(40);
         ColumnConstraints column2 = new ColumnConstraints();
@@ -97,11 +95,9 @@ public class CustomerForm extends GridPane {
         addRow(8, priceLabel, priceField);
         addRow(9, submitButton);
 
-        // Add status label
         statusLabel = new Label();
         add(statusLabel, 0, 10, 2, 1);
 
-        // Apply styles
         this.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
     }
 
